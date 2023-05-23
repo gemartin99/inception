@@ -37,3 +37,42 @@ Location /: La directiva try_files intenta servir la solicitud según el valor d
 
 Que es la variable uri? La variable $uri en una configuración de NGINX, se refiere al URI de la solicitud actual. Por ejemplo, si la URL completa es https://example.com/path/file.html, entonces $uri representaría /path/file.html. Cuando ponemos location / nos referimos a la ubicacion raiz del servidor que hemos definido anteriormente, es ahi donde buscara los ficheros.
 
+Comandos mas comunes en docker:
+
+◦ ```docker run```: Este comando se utiliza para ejecutar un contenedor a partir de una imagen.
+
+◦ ```docker build```: Este comando se utiliza para construir una imagen de Docker a partir de un archivo de Dockerfile. El dockerfile es un archivo de configuración que define cómo se construira la imagen.
+
+◦ ```docker pull```: Con este comando puedes descargar una imagen de Docker desde un registro publico o privado.
+
+◦  ```docker push```: Este comando se utiliza para subir una imagen de Docker a un registro, como podria ser Docker Hub. Esto permite que otras personas puedan descargar tu imagen y la utilicen en sus sistemas.
+
+◦ ```docker stop```: Detiene la ejecucion de uno o mas contenedores. Puedes especificar el nombre o el ID del contenedor.
+
+◦ ```docker rm```: Este comando detiene la ejecucion de una o mas contenedores. Puedes especificar el nombre o el ID del contenedor.
+
+◦ ```docker ps```: Muestra una lista de los contenedores que estan en ejecucion actualmente. Con la flag -a tambien se muestran los que no estan en ejecucion.
+
+◦ ```docker images```: Este comando muestra una lista de las imagenes que tienes localmente en tu sistema. Tambien muestra informacion como el tamaño de las imagenes y el ID.
+
+◦ ```docker exec```: Este comando se utiliza para ejecutar un comando dentro de un contenedor en ejecucion.
+
+◦ ```docker-compose up```: Inicia todos los servicios definidos en un archivo (docker-compose.yml).
+
+◦ ```docker logs```: Muestra los registros generados por un contenedor en ejecucion. Con el flag -f lo puedes seguir en tiempo real.
+
+◦ ```docker inspect```: Proporciona informacion detallada sobre un objeto de Docker, como un contenedor, una imagen , una red, etc.
+
+◦ ```docker network```: Permite administrar las redes de Docker.
+
+◦ ```docker restart```: Reinicia uno o mas contenedores en ejecucion.
+
+◦ ```docker kill```: Detiene abruptamente la ejecucion de uno o mas contenedores.
+
+◦ ```docker pause```: Pausa la ejecución de uno o mas contenedores.
+
+◦ ```docker unpause```: Reanuda la ejecucion de uno o mas contenedores pausados previamente.
+
+◦ ```docker stats```: Muestra en tiempo real las estadisticas de uso de recursos (CPU, memoria, etc) de los contenedores en ejecucion.
+
+◦ ```docker-compose down```: Detiene y elimina los servicios definidos en un archivo docker-compose.yml. 
