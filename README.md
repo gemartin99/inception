@@ -39,7 +39,7 @@ Que es la variable uri? La variable $uri en una configuración de NGINX, se refi
 
 Comandos mas comunes en docker:
 
-◦ ```docker run```: Este comando se utiliza para ejecutar un contenedor a partir de una imagen.
+◦ ```docker run```: Este comando se utiliza para ejecutar un contenedor a partir de una imagen. Con el dlag -d se ejecuta en segundo plano y con el flag -it se ejecuta en primer plano.
 
 ◦ ```docker build```: Este comando se utiliza para construir una imagen de Docker a partir de un archivo de Dockerfile. El dockerfile es un archivo de configuración que define cómo se construira la imagen.
 
