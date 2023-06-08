@@ -2,7 +2,8 @@
 
 Dockerfile de NGINX
 
-<img width="713" alt="Screen Shot 2023-05-17 at 11 47 56 PM" src="https://github.com/gemartin99/inception/assets/66915274/e18e9e62-c452-47ca-abec-75c25b5535ca">
+
+<img width="669" alt="Screen Shot 2023-06-08 at 3 51 39 PM" src="https://github.com/gemartin99/inception/assets/66915274/d55a55b3-1db4-4009-a405-c06dc38d0cd2">
 
 FROM: Creamos un contenedor vacio con todo lo basico que trae debian:buster (SO).
 RUN: ejecutamos apt get y get-install -y nginx openssl para instalar esos paquetes dentro de nuestro contenedor.
@@ -21,7 +22,8 @@ RUN: utilizamos openssl req ya que permite crear una nueva solicitud de certific
 
 Nginx.conf 
 
-<img width="496" alt="Screen Shot 2023-05-18 at 12 55 17 AM" src="https://github.com/gemartin99/inception/assets/66915274/0eee6c36-aa3b-493b-b0de-39b4b6beb7ed">
+<img width="581" alt="Screen Shot 2023-06-08 at 3 54 36 PM" src="https://github.com/gemartin99/inception/assets/66915274/e8b46a12-c31c-4561-bd22-84fa9b1a9046">
+
 
 Listen: El servidor virtual escucha en el puerto 443 para conexiones SSL/TLS. La segunda línea con [::] indica el soporte para conexiones IPv6.
 
