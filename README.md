@@ -110,3 +110,56 @@ RUN: Con el comando ```chmod 755 /usr/local/bin/mariadb.sh``` modificaremos los 
 RUN: Con el comando ```mysql_install_db``` ejecutaremos el script mysql_install_db dentro de nuestro contenedor y este script lo que hara es inicializar la estructura de directorios y archivos necesarios, crea la base de datos de sistema, archivos de registro y las tablas de permisos.
 
 ENTRYPOINT: Al definir un entrypoint lo que hacemos sera establecer que comando o script debe ejecutarse automaticamente al iniciar el contenedor, en nuestro caso ejecutaremos el script ubicado en ```/usr/local/bin/mariadb.sh``` que es el que hemos copiado previamente de la carpeta 'tools'.
+
+### Mariadb.conf
+
+Este archivo de configuración es utilizado por el servicio MySQL para especificar como debe funcionar el servidor de bases de datos.
+
+<img width="421" alt="Screen Shot 2023-06-20 at 11 44 37 AM" src="https://github.com/gemartin99/inception/assets/66915274/2143199f-8262-45dc-9805-8ce698366673">
+
+[mysqld]: Esta linea indica que las siguientes configuraciones se aplicaran al servidor de MySQL.
+
+user: Especifica el usuario bajo el cual se ejecutara el servidor MySQL.
+
+port: Indica el numero de puerto en el que el servidor esuchara las conexiones entrantes.
+
+datadir: Establece la ruta del directorio de datos de MySQL. Ahi se almacenaran las bases de datos y archivos relacionados.
+
+socket: Especifica el archivo de socket que se utilizara para las conexiones locales al servidor. Cuando un cliente de MySQL se conecta al servidor utilizando una conexión local, en lugar de una conexión a través de la red, se utiliza este archivo de socket para la comunicación. El cliente y el servidor interactúan a través de este archivo compartido en lugar de utilizar una dirección IP y un puerto como lo harían en una conexión remota.
+
+pid-file: Indica la ruta del archivo donde se almacenara el PID del servidor.
+
+bind-address: Determina la direccion IP a la que se enlazara el servidor. He puesto 0.0.0.0 , de esta manera el servidor estara disponible en todas las interfaces de red.
+
+basedir: Especifica la ruta del directorio base de instalacion de MySQL.
+
+tmpdir: Indica el directorio temporal donde se almacenaran los archivos temporales generados por el servidor.
+
+log_error: Establece la ubicacion del archivo de registro de errores del servidor de MySQL. En esta ruta se almacenaran los mensajes de error y eventos importantes.
+
+character-set-server: Define el conjunto de caracteres predeterminados que se utilizaran para las nuevas bases de datos y tablas. Ponemos este para asegurarnos que se guardaran y mostraran correctamente caracteres especiales como la 'ñ' etc.
+
+query_cache_size: Especifica el tamaño de la memoria cache de consultas. Al almacenar en cache consultas frecuentes MySQL puede responder a esas consultas de manera mas rapida, de esta manera aceleramos el rendimiento.
+
+### Script MariaDB
+
+<img width="805" alt="Screen Shot 2023-06-20 at 12 07 06 PM" src="https://github.com/gemartin99/inception/assets/66915274/0af6986c-f984-42c1-8a05-551b21ef3e25">
+
+🔴 Inicia el servicio MySQL. El servidor estara lito para aceptar conexiones.
+
+🟠 Condicion que si no existe el directorio de la base de datos entrara al if. Si no se cumple la condicion directamente pasara al paso 🟤.
+
+🟡 Nos conectamos a MySQL mediante nuestro usuario y contraseña (utilizamos las variables de entorno) y ejecutamos la instruccion ```CREATE DATABASE $MYSQL_DATABASE;``` para crear una nueva base de datos con el nombre almacenado en la variable de entorno.
+
+🟢 Crearemos un usuario dentro de la base de datos especificando el nombre y la contraseña (utilizamos las variables de entorno).
+
+🌐 Le concedemos todos los permisos al usuario recien creado para que pueda acceder a la base de datos y realizar cualquier operación en las tablas.
+
+🔵 Actualizamos los privilegios para que los cambio realizados se apliquen.
+
+🟣 Cambiamos la contraseña por defecto del usuario root de MySQL a la que tenemos almacenada en nuestra variable de entorno.
+
+🟤 Apagamos el servidor utilizando el usuario y contraseña de root.
+
+⚪️ Iniciamos el servidor MySQL de nuevo. Hemos realizado este reinicio para que el servidor se inicie con la configuracion y cambios realizados en el script.
+
