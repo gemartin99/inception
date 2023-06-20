@@ -163,3 +163,10 @@ query_cache_size: Especifica el tamaño de la memoria cache de consultas. Al alm
 
 ⚪️ Iniciamos el servidor MySQL de nuevo. Hemos realizado este reinicio para que el servidor se inicie con la configuracion y cambios realizados en el script.
 
+### Dockerfile Wordpress
+
+<img width="829" alt="Screen Shot 2023-06-21 at 12 04 00 AM" src="https://github.com/gemartin99/inception/assets/66915274/6fd8af2b-090a-45e9-80f0-437910d335f1">
+
+FROM: Creamos un contenedor vacio con todo lo basico que trae debian:buster (SO).
+
+RUN: Actualizamos la lista de paquetes y luego instalamos  
