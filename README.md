@@ -195,5 +195,28 @@ Este archivo es utilizado por PHP-FPM para configurar los procesos en la ejecuci
 
 <img width="767" alt="Screen Shot 2023-06-21 at 12 18 57 PM" src="https://github.com/gemartin99/inception/assets/66915274/01ad93b0-fc82-4de3-9c50-10997d0aaf66">
 
-[www]: 
+[ www ]: Indica el bloque de configuración específico para el pool de trabajadores predeterminado.
+
+user: Establece el usuario bajo el cual se ejecutaran los scripts de PHP.
+
+group: Establece el grupo al que pertenece el user.
+
+listen: Especifica el puerto de escucha eb el cual PHP-FPM aceptara conexiones.
+
+listen.owner: Establece el propietario del socket de escucha.
+
+listen.group: Establece el grupo del socket de escucha.
+
+listen.mode: Establece los permisos del socket de escucha, se establece en 0660, de mode que el propietario y el grupo tienen permisos de lectura y escritura, mientras que otro no tienen permisos.
+
+pm: Define la estrategia de administracion de procesos para PHP-FPM. Utilizamos dinamico para que la cantidad de procesos se ajusten automaticamente segun la carga del servidor.
+
+pm.max_children: Establecemos el numero maximo de procesos hijos que se pueden generar.
+
+pm.start_servers: Especificamos el numero de procesos hijos que se deben iniciar automaticamente al iniciar PHP-FPM.
+
+pm.min_spare_servers: Definimos el numero minimo de procesos hijos inactivos que se deben mantener en espera para manejar las solicitudes.
+
+pm.max_spare_servers: Establecemos el numero maximo de procesos hijos inactivos que se deben mantener en espera.
+
 
