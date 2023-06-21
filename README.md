@@ -189,3 +189,11 @@ WORKDIR: Establecemos la ruta ```/var/www/html/``` como el directorio raiz donde
 
 ENTRYPOINT: Cuando el contenedor se inicie, se ejecutará el script wordpress.sh
 
+### www.conf
+
+Este archivo es utilizado por PHP-FPM para configurar los procesos en la ejecucion de PHP.
+
+<img width="767" alt="Screen Shot 2023-06-21 at 12 18 57 PM" src="https://github.com/gemartin99/inception/assets/66915274/01ad93b0-fc82-4de3-9c50-10997d0aaf66">
+
+[www]: 
+
