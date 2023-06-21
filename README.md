@@ -219,4 +219,21 @@ pm.min_spare_servers: Definimos el numero minimo de procesos hijos inactivos que
 
 pm.max_spare_servers: Establecemos el numero maximo de procesos hijos inactivos que se deben mantener en espera.
 
+### Wordpress.sh
+
+<img width="1172" alt="Screen Shot 2023-06-21 at 3 04 55 PM" src="https://github.com/gemartin99/inception/assets/66915274/b5f77515-f9c3-4f4a-94ce-fe8e7706c66a">
+
+🔴 Se verifica si el archivo no existe , de ser asi se entra al if.
+
+🟠 Descarga el núcleo de WordPress utilizando la herramienta WP-CLI. La opción ```--allow-root``` permite ejecutar WP-CLI como el usuario root.
+
+🟡 Creamos el archivo de configuracion ```wp-config.php``` con los detalles de la base de datos proporcionado a traves de variables de entorno.
+
+🟢 Realizamos la instalacion de WordPress con los parametros proporcionados en las vaiables de entorno. La opcion --skip-email evita que se envie un correo electronico de notificacion.
+
+🔵 Creamos un nuevo usuario de WordPress con el nombre, correo y contraseña proporcionados en las variables de entorno. En este caso al usuario nuevo se le asigna el rol de autor.
+
+🟣 Descargamos, instalamos y activamos el tema twentysixteen.
+
+🟤 Iniciamos el servicio PHP-FPM en segundo plano y lo dejamos en ejecucion constante con -F.
 
