@@ -165,8 +165,27 @@ query_cache_size: Especifica el tamaño de la memoria cache de consultas. Al alm
 
 ### Dockerfile Wordpress
 
-<img width="829" alt="Screen Shot 2023-06-21 at 12 04 00 AM" src="https://github.com/gemartin99/inception/assets/66915274/6fd8af2b-090a-45e9-80f0-437910d335f1">
+<img width="1048" alt="Screen Shot 2023-06-21 at 12 00 57 PM" src="https://github.com/gemartin99/inception/assets/66915274/daeb64a8-ecc3-4f0f-9e2c-044cadb3fe3e">
 
 FROM: Creamos un contenedor vacio con todo lo basico que trae debian:buster (SO).
 
-RUN: Actualizamos la lista de paquetes y luego instalamos  
+RUN: Actualizamos la lista de paquetes y luego instalamos los paquetes necesarios para ejecutar PHP-FPM y MySQL. Instalamos la utilidad curl que permite realizar solicitudes HTTP y descargar archiovs desde una URL. php7.3-fpm es un modulo de php que gestiona la ejecucion de scripts php. php7.3-mysqli este paquete es una extension de PHP para interactuar con la base de datos MySQL. mariadb-client permite interactuar con una base de datos MariaDB o MySQL desde linea de comandos.
+
+RUN: Descargamos el archivo ejecutable de WP-CLI, este es una herramienta que proporciona una interfaz de linea de comandos para administrar y gestionar instalaciones de Wordpress. Este archivo se guarda con el nombre wp-cli.phar en el directorio actual del contenedor. Con el siguiente comando ```chmod +x wp-cli.phar``` se otorgan permisos de ejecucion al archivo. Por ultimo con ```mv wp-cli.phar /usr/local/bin/wp``` movemos el archivo al directorio especificado y le cambiamos el nombre,  se hace accesible globalmente en el sistema de archivos del contenedor.
+
+COPY: Copiamos el archivo www.conf de nuestra maquina a la ruta /etc/php/7.3/fpm/pool.d/ de nuestro contenedor.
+
+RUN: con el comando ```mkdir -p /run/php``` creamos el directorio indicado y sus subdirectorios si es que no existen.
+
+RUN: Con el siguiente comando ```chmod 755 /run/php``` modificaremos los permisos para que el propietario del archivo tenga permisos de lectura, escritura y ejecucion, mientras que el resto de usuarios solo tendran permisos de lectura y ejecucion.
+
+COPY: Copiamos el archivo wordpress.sh de nuestra maquina y lo pegamos en la ruta /usr/local/bin/ de nuestro contenedor.
+
+RUN: Otorgamos permisos de ejecucion al archivo.
+
+EXPOSE: Exponemos el puerto 9000 del contenedor. Esto permite que otros contenedores o el host accedan al servicio PHP-FPM en el puerto 9000.
+
+WORKDIR: Establecemos la ruta ```/var/www/html/``` como el directorio raiz donde se alojaran los archivos de WordPress.
+
+ENTRYPOINT: Cuando el contenedor se inicie, se ejecutará el script wordpress.sh
+
